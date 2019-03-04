@@ -1,0 +1,423 @@
+<plugins>
+<!-- HDFS -->
+  <source>
+    <name>hdfs-textfile</name>
+    <description>plug-in for importing from text file</description>
+    <configurationClass>com.teradata.connector.hdfs.utils.HdfsConfiguration</configurationClass>
+    <inputformatClass>org.apache.hadoop.mapreduce.lib.input.TextInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hdfs.serde.HdfsTextSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hdfs.processor.HdfsTextFileInputProcessor</inputProcessor>
+    <properties>
+       <property>
+          <name>tdch.input.hdfs.custom_parse</name>
+          <value>false</value>
+       </property>
+       <property>
+          <name>tdch.input.hdfs.separator</name>
+          <value>\u0009</value>
+          <description>field separator</description>
+       </property>
+    </properties>
+  </source>
+
+  <target>
+    <name>hdfs-textfile</name>
+    <description>plug-in for exporting into text file</description>
+    <configurationClass>com.teradata.connector.hdfs.utils.HdfsConfiguration</configurationClass>
+    <outputformatClass>org.apache.hadoop.mapreduce.lib.output.TextOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hdfs.serde.HdfsTextSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hdfs.converter.HdfsTextFileConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hdfs.processor.HdfsTextFileOutputProcessor</outputProcessor>
+    <properties>
+       <property>
+          <name>tdch.output.hdfs.custom_parse</name>
+          <value>false</value>
+       </property>
+       <property>
+          <name>tdch.output.hdfs.separator</name>
+          <value>\u0009</value>
+          <description>field separator</description>
+       </property>
+    </properties>
+  </target>
+
+  <source>
+    <name>hdfs-avrofile</name>
+    <description>plug-in for importing from avro file</description>
+    <configurationClass>com.teradata.connector.hdfs.utils.HdfsConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.hdfs.HdfsAvroInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hdfs.serde.HdfsAvroSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hdfs.processor.HdfsAvroInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hdfs-avrofile</name>
+    <description>plug-in for exporting into avro file</description>
+    <configurationClass>com.teradata.connector.hdfs.utils.HdfsConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hdfs.HdfsAvroOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hdfs.serde.HdfsAvroSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hdfs.converter.HdfsAvroConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hdfs.processor.HdfsAvroOutputProcessor</outputProcessor>
+  </target>
+
+<!-- HIVE -->  
+
+  <source>
+    <name>hive-avrofile</name>
+    <description>plug-in for importing from Hive compatible avro file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.hive.HiveAvroFileInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveAvroFileSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hive.processor.HiveInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hive-avrofile</name>
+    <description>plug-in for exporting into Hive compatible avro file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hive.HiveAvroFileOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveAvroFileSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hive.converter.HiveConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hive.processor.HiveOutputProcessor</outputProcessor>
+  </target>
+  
+  <source>
+    <name>hive-textfile</name>
+    <description>plug-in for importing from Hive compatible text file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <inputformatClass>org.apache.hadoop.mapreduce.lib.input.TextInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveTextFileSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hive.processor.HiveInputProcessor</inputProcessor>
+    <properties>
+       <property>
+          <name>tdch.input.hive.fields.separator</name>
+          <value>\u0001</value>
+          <description>field separator</description>
+       </property>
+       <property>
+          <name>tdch.input.hive.line.separator</name>
+          <value>\u000A</value>
+          <description>line separator</description>
+       </property>
+    </properties>
+  </source>
+
+  <target>
+    <name>hive-textfile</name>
+    <description>plug-in for exporting into Hive compatible text file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hive.HiveTextFileOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveTextFileSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hive.converter.HiveConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hive.processor.HiveOutputProcessor</outputProcessor>
+    <properties>
+       <property>
+          <name>tdch.output.hive.fields_separator</name>
+          <value>\u0001</value>
+          <description>field separator</description>
+       </property>
+       <property>
+          <name>tdch.output.hive.line.separator</name>
+          <value>\u000A</value>
+          <description>line separator</description>
+       </property>
+    </properties>
+  </target>
+  
+  <source>
+    <name>hive-sequencefile</name>
+    <description>plug-in for importing from Hive compatible sequence file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <inputformatClass>org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveTextFileSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hive.processor.HiveInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hive-sequencefile</name>
+    <description>plug-in for exporting into Hive compatible sequence file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hive.HiveSequenceFileOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveTextFileSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hive.converter.HiveConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hive.processor.HiveOutputProcessor</outputProcessor>
+  </target>
+  
+  <source>
+    <name>hive-rcfile</name>
+    <description>plug-in for importing from Hive compatible rcfile file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.hive.HiveRCFileInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveRCFileSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hive.processor.HiveInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hive-rcfile</name>
+    <description>plug-in for exporting into Hive compatible rcfile file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hive.HiveRCFileOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveRCFileSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hive.converter.HiveConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hive.processor.HiveOutputProcessor</outputProcessor>
+  </target>
+  
+  <source>
+    <name>hive-orcfile</name>
+    <description>plug-in for importing from Hive compatible orcfile file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.hive.HiveORCFileInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveORCFileSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hive.processor.HiveInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hive-orcfile</name>
+    <description>plug-in for exporting into Hive compatible orcfile file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hive.HiveORCFileOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveORCFileSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hive.converter.HiveConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hive.processor.HiveOutputProcessor</outputProcessor>
+  </target>
+
+  <source>
+    <name>hive-parquet</name>
+    <description>plug-in for importing from Hive compatible parquet file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.hive.HiveParquetFileInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveParquetFileSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hive.processor.HiveInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hive-parquet</name>
+    <description>plug-in for exporting into Hive compatible parquet file</description>
+    <configurationClass>com.teradata.connector.hive.utils.HiveConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hive.HiveParquetFileOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hive.serde.HiveParquetFileSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hive.converter.HiveConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hive.processor.HiveOutputProcessor</outputProcessor>
+  </target>
+
+  <source>
+    <name>hcat</name>
+    <description>plug-in for importing from HCatlog table</description>
+    <configurationClass>com.teradata.connector.hcat.utils.HCatConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.hcat.ConnectorCombineFileHCatInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.hcat.serde.HCatSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.hcat.processor.HCatInputProcessor</inputProcessor>
+  </source>
+
+  <target>
+    <name>hcat</name>
+    <description>plug-in for exporting into HCatalog table</description>
+    <configurationClass>com.teradata.connector.hcat.utils.HCatConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.hcat.HCatOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.hcat.serde.HCatSerDe</serdeClass>
+    <converterClass>com.teradata.connector.hcat.converter.HCatConverter</converterClass>
+    <outputProcessor>com.teradata.connector.hcat.processor.HCatOutputProcessor</outputProcessor>
+  </target>
+  
+<!-- TERADATA -->
+  <source>
+    <name>teradata-split.by.partition</name>
+    <description>plug-in for exporting data from teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.teradata.TeradataSplitByPartitionInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.teradata.processor.TeradataSplitByPartitionProcessor</inputProcessor>
+    <properties>
+       <property>
+          <name>tdch.input.teradata.data.dictionary.use.xview</name>
+          <value>false</value>
+          <description>use xview to retrieve meta data</description>
+       </property>
+       <property>
+          <name>tdch.input.jdbc.driver.class</name>
+          <value>com.teradata.jdbc.TeraDriver</value>
+          <description>default JDBC driver class</description>
+       </property>
+       <property>
+          <name>tdch.input.teradata.access.lock</name>
+          <value>false</value>
+       </property>
+    </properties>
+  </source>
+  
+  <source>
+    <name>teradata-split.by.hash</name>
+    <description>plug-in for exporting data from teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.teradata.TeradataSplitByHashInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.teradata.processor.TeradataSplitByHashProcessor</inputProcessor>
+    <properties>
+       <property>
+          <name>tdch.input.teradata.data.dictionary.use.xview</name>
+          <value>false</value>
+          <description>use xview to retrieve meta data</description>
+       </property>
+       <property>
+          <name>tdch.input.jdbc.driver.class</name>
+          <value>com.teradata.jdbc.TeraDriver</value>
+          <description>default JDBC driver class</description>
+       </property>
+       <property>
+          <name>tdch.input.teradata.access.lock</name>
+          <value>false</value>
+       </property>
+    </properties>
+  </source>
+  
+  <source>
+    <name>teradata-split.by.value</name>
+    <description>plug-in for exporting data from teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.teradata.TeradataSplitByValueInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.teradata.processor.TeradataSplitByValueProcessor</inputProcessor>
+    <properties>
+       <property>
+          <name>tdch.input.teradata.data.dictionary.use.xview</name>
+          <value>false</value>
+          <description>use xview to retrieve meta data</description>
+       </property>
+       <property>
+          <name>tdch.input.jdbc.driver.class</name>
+          <value>com.teradata.jdbc.TeraDriver</value>
+          <description>default JDBC driver class</description>
+       </property>
+       <property>
+          <name>tdch.input.teradata.access.lock</name>
+          <value>false</value>
+       </property>
+    </properties>
+  </source>
+  
+  <source>
+    <name>teradata-split.by.amp</name>
+    <description>plug-in for exporting data from teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.teradata.TeradataSplitByAmpInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.teradata.processor.TeradataSplitByAmpProcessor</inputProcessor>
+    <properties>
+       <property>
+          <name>tdch.input.teradata.data.dictionary.use.xview</name>
+          <value>false</value>
+          <description>use xview to retrieve meta data</description>
+       </property>
+       <property>
+          <name>tdch.input.jdbc.driver.class</name>
+          <value>com.teradata.jdbc.TeraDriver</value>
+          <description>default JDBC driver class</description>
+       </property>
+       <property>
+          <name>tdch.input.teradata.access.lock</name>
+          <value>false</value>
+       </property>
+    </properties>
+  </source>
+
+  <source>
+    <name>teradata-internal.fastexport</name>
+    <description>plug-in for exporting data from teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.teradata.TeradataInternalFastExportInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.teradata.processor.TeradataInternalFastExportProcessor</inputProcessor>
+    <properties>
+      <property>
+        <name>tdch.input.teradata.data.dictionary.use.xview</name>
+        <value>false</value>
+        <description>use xview to retrieve meta data</description>
+      </property>
+      <property>
+        <name>tdch.input.jdbc.driver.class</name>
+        <value>com.teradata.jdbc.TeraDriver</value>
+        <description>default JDBC driver class</description>
+      </property>
+      <property>
+        <name>tdch.input.teradata.access.lock</name>
+        <value>false</value>
+      </property>
+    </properties>
+  </source>
+
+  <target>
+    <name>teradata-batch.insert</name>
+    <description>plug-in for import into teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.teradata.TeradataBatchInsertOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <converterClass>com.teradata.connector.teradata.converter.TeradataConverter</converterClass>
+    <outputProcessor>com.teradata.connector.teradata.processor.TeradataBatchInsertProcessor</outputProcessor>
+    <properties>
+       <property>
+          <name>tdch.output.teradata.data.dictionary.use.xview</name>
+          <value>false</value>
+          <description>use xview to retrieve meta data</description>
+       </property>
+       <property>
+          <name>tdch.output.jdbc.driver.class</name>
+          <value>com.teradata.jdbc.TeraDriver</value>
+          <description>default JDBC driver class</description>
+       </property>
+       <property>
+          <name>tdch.output.teradata.batch.size</name>
+          <value>10000</value>
+          <description>batch size to retrieve data from dbs</description>
+       </property>
+    </properties>
+  </target>
+  
+  <target>
+    <name>teradata-internal.fastload</name>
+    <description>plug-in for import into teradata</description>
+    <configurationClass>com.teradata.connector.teradata.utils.TeradataConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.teradata.TeradataInternalFastloadOutputFormat</outputformatClass>
+    <serdeClass>com.teradata.connector.teradata.serde.TeradataSerDe</serdeClass>
+    <converterClass>com.teradata.connector.teradata.converter.TeradataConverter</converterClass>
+    <outputProcessor>com.teradata.connector.teradata.processor.TeradataInternalFastloadProcessor</outputProcessor>
+    <preHook>com.teradata.connector.teradata.TeradataInternalFastloadPreJobHook</preHook>
+    <properties>
+       <property>
+          <name>tdch.output.teradata.data.dictionary.use.xview</name>
+          <value>false</value>
+          <description>use xview to retrieve meta data</description>
+       </property>
+       <property>
+          <name>tdch.output.jdbc.driver.class</name>
+          <value>com.teradata.jdbc.TeraDriver</value>
+          <description>default JDBC driver class</description>
+       </property>
+       <property>
+          <name>tdch.output.teradata.batch.size</name>
+          <value>10000</value>
+          <description>batch size to retrieve data from dbs</description>
+       </property>
+    </properties>
+  </target>
+  
+<!-- INDICATOR DATA STREAM -->
+  <source>
+    <name>idata.stream</name>
+    <description>plug-in for importing from an indicator data stream</description>
+    <configurationClass>com.teradata.connector.idatastream.utils.IDataStreamPlugInConfiguration</configurationClass>
+    <inputformatClass>com.teradata.connector.idatastream.IDataStreamInputFormat</inputformatClass>
+    <serdeClass>com.teradata.connector.idatastream.serde.IDataStreamSerDe</serdeClass>
+    <inputProcessor>com.teradata.connector.idatastream.processor.IDataStreamInputProcessor</inputProcessor>
+  </source>
+  
+  <target>
+    <name>idata.stream</name>
+    <description>plug-in for exporting to an indicator data stream</description>
+    <configurationClass>com.teradata.connector.idatastream.utils.IDataStreamPlugInConfiguration</configurationClass>
+    <outputformatClass>com.teradata.connector.idatastream.IDataStreamOutputFormat</outputformatClass>
+    <converterClass>com.teradata.connector.idatastream.converter.IDataStreamConverter</converterClass>
+    <serdeClass>com.teradata.connector.idatastream.serde.IDataStreamSerDe</serdeClass>
+    <outputProcessor>com.teradata.connector.idatastream.processor.IDataStreamOutputProcessor</outputProcessor>
+  </target>
+</plugins>
+
