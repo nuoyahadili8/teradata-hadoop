@@ -1,6 +1,4 @@
 # teradata-connector
-### 官方文档
- JAR包下载地址及文档说明：http://downloads.teradata.com/download/connectivity/teradata-connector-for-hadoop-command-line-edition
 
 **对TDCH的扩展功能如下：**
  1. 增加指定Hive分区导出功能，参数：-sourcepartitionpath。 其中支持分区字段匹配模式，如：**/*2019*
